@@ -1,0 +1,39 @@
+# Environment & secrets
+.env
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Reports (generated output)
+reports/*.json
+reports/*.md
+
+# Paper trading state
+paper_portfolio.json
+
+# Memory / cache
+crypto_memory/
+crypto_cache.db
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+*.swp

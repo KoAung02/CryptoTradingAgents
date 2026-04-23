@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "cryptoagents"
+version = "0.1.0"
+description = "Multi-agent LLM crypto trading framework powered by Ollama"
+requires-python = ">=3.11"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["cryptoagents*", "cli*"]
