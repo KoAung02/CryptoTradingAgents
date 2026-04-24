@@ -25,6 +25,7 @@ reports/*.md
 
 # Paper trading state
 paper_portfolio.json
+paper_decisions.json
 
 # Memory / cache
 crypto_memory/

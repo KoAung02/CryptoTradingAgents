@@ -87,6 +87,9 @@ Run once a day to get new signals and open/close positions:
 
 ```bash
 python -m cli.main paper-trade --symbols BTCUSDT ETHUSDT BNBUSDT SOLUSDT
+
+# With full agent reports (shows each analyst's reasoning)
+python -m cli.main paper-trade --symbols BTCUSDT ETHUSDT BNBUSDT SOLUSDT --show-reports
 ```
 
 Check portfolio status anytime:
@@ -210,6 +213,7 @@ CryptoAgents/
 │   └── paper_trader/
 │       ├── paper_trader.py        # Daily paper trading runner
 │       ├── portfolio.py           # Portfolio state management
+│       ├── decisions.py           # Daily decision log (paper_decisions.json)
 │       └── price_monitor.py      # 24/7 background price checker
 └── reports/                       # Saved backtest reports (JSON + Markdown)
 ```

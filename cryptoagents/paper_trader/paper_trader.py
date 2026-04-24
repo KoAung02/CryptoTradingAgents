@@ -6,6 +6,7 @@ from cryptoagents.paper_trader.portfolio import (
     load_portfolio, save_portfolio, get_open_position, total_equity,
     PORTFOLIO_FILE,
 )
+from cryptoagents.paper_trader.decisions import log_decision
 
 
 class PaperTrader:
@@ -27,6 +28,7 @@ class PaperTrader:
             "opened_today": [],
             "held": [],
             "errors": [],
+            "states": {},
         }
 
         # ── Step 1: Fetch live prices ─────────────────────────────────────────
@@ -93,6 +95,7 @@ class PaperTrader:
 
             try:
                 state, decision = self.graph.propagate(symbol, today_str)
+                results["states"][symbol] = state
             except Exception as e:
                 results["errors"].append(f"{symbol}: pipeline failed ({e})")
                 if open_pos:
@@ -119,6 +122,7 @@ class PaperTrader:
                         p for p in portfolio["open_positions"] if p["symbol"] != symbol
                     ]
                     results["closed_today"].append(closed)
+                    log_decision(date_str, symbol, action, price, decision, "closed_sell")
                     self.graph.reflect_and_remember(state, {
                         "entry_price": open_pos["entry_price"],
                         "exit_price": price,
@@ -126,6 +130,10 @@ class PaperTrader:
                     })
                 else:
                     results["held"].append(symbol)
+                    log_decision(date_str, symbol, action, price or 0, decision, "already_open")
+
+            elif action != "BUY" and not open_pos:
+                log_decision(date_str, symbol, action, price or 0, decision, "held")
 
             elif action == "BUY" and price:
                 entry_price = decision.get("entry") or price
@@ -177,6 +185,7 @@ class PaperTrader:
                     }
                     portfolio["open_positions"].append(new_pos)
                     results["opened_today"].append(new_pos)
+                    log_decision(date_str, symbol, action, price, decision, "opened")
 
         # ── Step 4: Update equity curve and save ──────────────────────────────
         eq = total_equity(portfolio, live_prices)

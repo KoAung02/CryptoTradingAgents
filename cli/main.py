@@ -314,6 +314,11 @@ def cmd_paper_trade(args) -> None:
 
     _print_paper_results(results)
 
+    if args.show_reports:
+        for symbol, state in results.get("states", {}).items():
+            console.rule(f"[bold cyan]{symbol} — Full Agent Reports[/bold cyan]")
+            _show_full_reports(state)
+
 
 def cmd_paper_status(args) -> None:
     from cryptoagents.paper_trader.portfolio import load_portfolio, compute_summary
@@ -465,6 +470,7 @@ def main():
     p_paper = sub.add_parser("paper-trade", help="Run daily paper trading update")
     p_paper.add_argument("--symbols", nargs="+", default=["BTCUSDT", "ETHUSDT", "BNBUSDT", "SOLUSDT"])
     p_paper.add_argument("--capital", type=float, default=10000.0)
+    p_paper.add_argument("--show-reports", action="store_true")
 
     # paper-status
     sub.add_parser("paper-status", help="View current paper portfolio")
