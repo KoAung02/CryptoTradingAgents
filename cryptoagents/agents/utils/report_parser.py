@@ -42,6 +42,10 @@ def parse_final_decision(report: str) -> dict:
     if conf_match:
         result["confidence"] = int(conf_match.group(1))
 
+    rationale_match = re.search(r"###\s*Rationale\s*\n(.*?)(?=\n###|\Z)", report, re.IGNORECASE | re.DOTALL)
+    if rationale_match:
+        result["rationale"] = rationale_match.group(1).strip()[:500]
+
     return result
 
 
