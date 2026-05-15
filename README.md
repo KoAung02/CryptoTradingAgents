@@ -42,7 +42,7 @@ Uses **Together AI** for LLM inference (free tier available) and **Binance publi
 | Role | Model | Used for | Cost |
 |------|-------|----------|------|
 | Quick | `openai/gpt-oss-20b` (Together AI) | Analysts, Trader, Researchers | $0.05/$0.20 per MTok |
-| Deep | `deepseek-ai/DeepSeek-V3.1` (Together AI) | Risk Manager, Portfolio Manager | $0.60/$1.70 per MTok |
+| Deep | `MiniMaxAI/MiniMax-M2.7` (Together AI) | Risk Manager, Portfolio Manager | — |
 
 Typical cost: ~$0.05 per 1-week backtest, ~$0.60 per 90-day backtest.
 
@@ -178,7 +178,7 @@ Edit `cryptoagents/default_config.py`:
 
 ```python
 "llm_provider": "together",
-"deep_think_llm": "deepseek-ai/DeepSeek-V3.1",
+"deep_think_llm": "MiniMaxAI/MiniMax-M2.7",
 "quick_think_llm": "openai/gpt-oss-20b",
 "max_portfolio_heat": 0.40,
 "max_single_position_size": 0.25,

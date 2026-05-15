@@ -2,7 +2,7 @@ DEFAULT_CONFIG = {
     # LLM Settings
     # providers: "ollama" | "groq" | "anthropic" | "openai" | "google"
     "llm_provider": "together",
-    "deep_think_llm": "deepseek-ai/DeepSeek-V3.1",
+    "deep_think_llm": "MiniMaxAI/MiniMax-M2.7",
     "quick_think_llm": "openai/gpt-oss-20b",
     "ollama_base_url": "http://localhost:11434",
     "temperature_deep": 0.3,
