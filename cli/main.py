@@ -373,8 +373,8 @@ def cmd_paper_status(args) -> None:
                 pos["symbol"],
                 f"${pos['entry_price']:,.2f}",
                 f"${price:,.2f}",
-                f"[red]${pos.get('stop_loss', 0):,.2f}[/red]",
-                f"[green]${pos.get('take_profit', 0):,.2f}[/green]",
+                f"[red]${pos.get('stop_loss') or 0:,.2f}[/red]",
+                f"[green]${pos.get('take_profit') or 0:,.2f}[/green]",
                 f"{pos['size_pct'] * 100:.1f}%",
                 f"[{color}]${pnl:+,.2f} ({ret:+.2f}%)[/{color}]",
             )
@@ -431,8 +431,8 @@ def _print_paper_results(results: dict) -> None:
             t.add_row(
                 pos["symbol"],
                 f"${pos['entry_price']:,.2f}",
-                f"[red]${pos.get('stop_loss', 0):,.2f}[/red]",
-                f"[green]${pos.get('take_profit', 0):,.2f}[/green]",
+                f"[red]${pos.get('stop_loss') or 0:,.2f}[/red]",
+                f"[green]${pos.get('take_profit') or 0:,.2f}[/green]",
                 f"{pos['size_pct'] * 100:.1f}%",
                 f"${pos['position_value']:,.2f}",
             )
