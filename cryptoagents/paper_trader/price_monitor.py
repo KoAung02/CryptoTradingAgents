@@ -82,9 +82,11 @@ def check_positions() -> list[dict]:
                 f"{ret_pct:+.2f}% | P&L ${pnl:+,.2f}"
             )
         else:
+            sl_str = f"${sl:,.2f}" if sl else "—"
+            tp_str = f"${tp:,.2f}" if tp else "—"
             log.info(
                 f"{symbol} @ ${price:,.2f} | "
-                f"SL ${sl:,.2f} | TP ${tp:,.2f} | "
+                f"SL {sl_str} | TP {tp_str} | "
                 f"Trail high ${pos.get('highest_price', pos['entry_price']):,.2f}"
             )
 
